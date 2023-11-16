@@ -2,7 +2,8 @@
 
 namespace App\Command;
 
-use App\Service\MixRepository;
+
+use App\Repository\VinylMixRepository;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Style\SymfonyStyle;
@@ -17,7 +18,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 )]
 class TalkToMeCommand extends Command
 {
-    public function __construct( private MixRepository $mixRepository)
+    public function __construct( private VinylMixRepository $mixRepository)
     {
         parent::__construct();
     }

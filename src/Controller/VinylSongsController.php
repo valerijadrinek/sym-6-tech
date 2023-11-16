@@ -8,7 +8,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use function Symfony\Component\String\u;
-use App\Service\MixRepository;
+
+use App\Repository\VinylMixRepository;
 
 class VinylSongsController extends AbstractController
 {
@@ -33,11 +34,11 @@ class VinylSongsController extends AbstractController
     }
 
     #[Route('/browse/{slug}', name: "app_browse")]
-    public function browse( MixRepository $mixRepository,  string $slug = null): Response //optional parameters must go last in line
+    public function browse( VinylMixRepository $mixRepository,  string $slug = null): Response //optional parameters must go last in line
     {
        $genre = $slug ? u(str_replace('-', ' ', $slug)) : null;
        
-       $mixes = $mixRepository->findAll();
+       $mixes = $mixRepository->findAllOrderedByVotes($slug);
 
     //    foreach ($mixes as $key => $mix) {
     //        $mixes[$key]['ago'] = $dateTimeFormatter->formatDiff($mix['createdAt']);
