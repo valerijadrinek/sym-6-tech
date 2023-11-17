@@ -21,19 +21,21 @@
         <h2 class="mt-5">Mixes</h2>
         <div class="row">
             {% for mix in mixes %}
-            <div class="col col-md-4">
+            <div class="col col-md-6">
                 <div class="mixed-vinyl-container p-3 text-center">
                       <a href="{{ path('app_mix_show', {
                         id: mix.id
                         }) }}" class="mixed-vinyl-container p-3 text-center">
-                    <img src="{{ mix.getImageUrl(300) }}" alt="Mix album cover">
+                    <img src="{{ mix.getImageUrl(300) }}" alt="Mix album cover"></a>
                     <p class="mt-2"><strong>{{ mix.title }}</strong></p>
                     <span>{{ mix.trackCount }}  Tracks</span> | <span>{{ mix.genre }}</span> | 
                     <span>{{ mix.createdAt|ago }}</span>
-                    <br>
-                    <span>{{ mix.votesString }} votes</span>
+                    
+                    
+                    <div><span>{{ mix.votesString }} votes</span></div>
                 </div>
             </div>
+            
             {% endfor %}
         </div>
     </div>
