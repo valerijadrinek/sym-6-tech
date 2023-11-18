@@ -5,10 +5,13 @@ namespace App\Entity;
 use App\Repository\VinylMixRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 #[ORM\Entity(repositoryClass: VinylMixRepository::class)]
 class VinylMix
 {
+    use TimestampableEntity;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -26,16 +29,13 @@ class VinylMix
     #[ORM\Column(length: 255)]
     private ?string $genre = null;
 
-    #[ORM\Column]
-    private \DateTimeImmutable $createdAt;
+   
 
     #[ORM\Column]
     private int $votes = 0;
 
-    public function __construct () 
-    {
-        $this->createdAt = new \DateTimeImmutable();
-    }
+    #[ORM\Column(length: 100)]
+    private ?string $slug = null;
 
 
     public function getId(): ?int
@@ -91,18 +91,6 @@ class VinylMix
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeImmutable $createdAt): static
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
     public function getVotesString() : string
     {
         $prefix = ($this->votes === 0) ? '' : (($this->votes >= 0) ? '+' : '-');
@@ -138,5 +126,17 @@ class VinylMix
             ($this->getId() + 50) % 1000, // number between 0 and 1000, based on the id
             $width
         );
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): static
+    {
+        $this->slug = $slug;
+
+        return $this;
     }
 }
