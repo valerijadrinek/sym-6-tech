@@ -121,6 +121,16 @@ class VinylMix
         return $this;
     }
 
+    public function upVotes() : void
+    {
+        $this->votes ++;
+    }
+
+    public function downVotes() : void
+    {
+        $this->votes--;
+    }
+
     public function getImageUrl(int $width): string
     {
         return sprintf(
