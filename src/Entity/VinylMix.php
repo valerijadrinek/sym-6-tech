@@ -142,4 +142,14 @@ class VinylMix
 
         return $this;
     }
+
+    public function setCreatedAt($createdAt) : void
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    public function setUpdatedAt($updatedAt) : void
+    {
+        $this->updatedAt = $updatedAt;
+    }
 }

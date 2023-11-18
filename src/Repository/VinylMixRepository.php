@@ -36,7 +36,7 @@ class VinylMixRepository extends ServiceEntityRepository
         }
 
         return $queryBuilder
-           ->setMaxResults(10)
+           
            ->getQuery()
            ->getResult()
           
