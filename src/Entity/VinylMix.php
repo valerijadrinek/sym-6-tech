@@ -6,6 +6,7 @@ use App\Repository\VinylMixRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Gedmo\Mapping\Annotation\Slug;
 
 #[ORM\Entity(repositoryClass: VinylMixRepository::class)]
 class VinylMix
@@ -34,7 +35,9 @@ class VinylMix
     #[ORM\Column]
     private int $votes = 0;
 
-    #[ORM\Column(length: 100)]
+    
+    #[ORM\Column(length: 100, unique: true)]
+    #[Slug(fields: ['title'])]
     private ?string $slug = null;
 
 
